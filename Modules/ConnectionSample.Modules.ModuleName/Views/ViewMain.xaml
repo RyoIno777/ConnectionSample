@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="ConnectionSample.Modules.ModuleName.Views.ViewMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:enums="clr-namespace:ConnectionSample.Core.Enums;assembly=ConnectionSample.Core"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Command="{Binding StartupServerCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Setter Property="Content" Value="▶ サーバーモードで起動" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AppStatus.Value}" Value="{x:Static enums:ApplicationStatus.None}">
+                            <Setter Property="IsEnabled" Value="True" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Column="1" Command="{Binding StartupClientCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Setter Property="Content" Value="▶ クライアントモードで起動" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AppStatus.Value}" Value="{x:Static enums:ApplicationStatus.None}">
+                            <Setter Property="IsEnabled" Value="True" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding StopCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="True" />
+                    <Setter Property="Content" Value="■ 動作停止" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AppStatus.Value}" Value="{x:Static enums:ApplicationStatus.None}">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AppStatus.Value}" Value="{x:Static enums:ApplicationStatus.Clinent}">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Button
+                Grid.Column="0"
+                Content="ウィンドウ戻す"
+                Command="{Binding SendCommand}"
+                CommandParameter="{x:Static enums:CommandMode.Normal}"
+            />
+            <Button
+                Grid.Column="1"
+                Content="ウィンドウ最小化"
+                Command="{Binding SendCommand}"
+                CommandParameter="{x:Static enums:CommandMode.Min}"
+            />
+            <Button
+                Grid.Column="2"
+                Content="ウィンドウ最大化"
+                Command="{Binding SendCommand}"
+                CommandParameter="{x:Static enums:CommandMode.Max}"
+            />
+            <Button
+                Grid.Column="3"
+                Content="アプリケーション終了"
+                Command="{Binding SendCommand}"
+                CommandParameter="{x:Static enums:CommandMode.Shutdown}"
+            />
+        </Grid>
+    </Grid>
+</UserControl>

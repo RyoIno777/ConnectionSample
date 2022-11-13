@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="ReactiveProperty.WPF" Version="8.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConnectionSample.Core\ConnectionSample.Core.csproj" />
+    <ProjectReference Include="..\Modules\ConnectionSample.Modules.ModuleName\ConnectionSample.Modules.ModuleName.csproj" />
+    <ProjectReference Include="..\Services\ConnectionSample.Services.Interfaces\ConnectionSample.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\ConnectionSample.Services\ConnectionSample.Services.csproj" />
+  </ItemGroup>
+</Project>
