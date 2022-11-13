@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="ConnectionSample.Modules.ModuleName.Views.ViewStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid Background="#666">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" HorizontalContentAlignment="Left" Foreground="White" FontSize="15" Content="{Binding Message.Value}" />
+            <Label Grid.Column="1" HorizontalContentAlignment="Right" Foreground="White" FontSize="15" Content="{Binding StatusText.Value}" />
+        </Grid>
+    </Grid>
+</UserControl>
